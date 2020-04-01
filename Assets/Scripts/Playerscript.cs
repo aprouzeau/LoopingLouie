@@ -13,6 +13,10 @@ public class Playerscript : MonoBehaviour
 
     [SerializeField]
     private Transform center;
+
+
+    private PoleRotation _pr;
+    public PoleRotation Pr { set { _pr = value; } }
     
     
     // Start is called before the first frame update
@@ -22,6 +26,7 @@ public class Playerscript : MonoBehaviour
         unit.Normalize();
         Camera.main.transform.position = center.position + new Vector3(0, 30, 0) + 25*unit;
         Camera.main.transform.LookAt((center.position- new Vector3(0, 0, 0))/2);
+        SetDePoules.GetComponent<SetDePouleScript>().Player = this;
     }
 
     // Update is called once per frame
@@ -29,4 +34,15 @@ public class Playerscript : MonoBehaviour
     {
         
     }
+
+    public void Lost()
+    {
+        _pr.LooseGame();
+    }
+
+    public void Restart()
+    {
+        SetDePoules.GetComponent<SetDePouleScript>().InitBack();
+    }
+
 }
