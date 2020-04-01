@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 5859814235967169426}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 26.84, y: 3.6999993, z: -0.18999994}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 8350363872871423739}
   - {fileID: 1931260158315206992}
@@ -75,6 +75,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8b77fdf18db3245970e54139d0deb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pivot: {fileID: 2875965727998644464}
+  currentAngle: 0
+  targetAngle: 25
+  UpSpeed: 100
 --- !u!1 &6731863184757571651
 GameObject:
   m_ObjectHideFlags: 0

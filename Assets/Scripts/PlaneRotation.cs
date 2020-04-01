@@ -20,7 +20,9 @@ public class PlaneRotation : MonoBehaviour
 
     [SerializeField]
     private float StartingAngle;
-    float currentAngle; 
+
+    [SerializeField]
+    private float currentAngle; 
 
 
     [SerializeField]
@@ -65,9 +67,16 @@ public class PlaneRotation : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        /*if (Input.GetKey(KeyCode.Space))
         {
             jump = true;
-        }
+        }*/
     }
+
+    public void Jump()
+    {
+        jump = true;
+    }
+
+
 }
