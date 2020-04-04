@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CatapultScript : MonoBehaviour
+public class CatapultScript : NetworkBehaviour
 {
 
     [SerializeField]
@@ -21,6 +22,9 @@ public class CatapultScript : MonoBehaviour
     [SerializeField]
     private float UpSpeed;
 
+    private Playerscript _player;
+    public Playerscript Player { set { _player = value; } }
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +35,7 @@ public class CatapultScript : MonoBehaviour
     }
 
     // Update is called once per frame
+    [Client]
     void Update()
     {
 
@@ -61,7 +66,7 @@ public class CatapultScript : MonoBehaviour
 
 
 
-        if (Input.GetKey(KeyCode.Space))
+        if (_player.isLocalPlayer && Input.GetKey(KeyCode.Space))
         {
             jump = true;
         }

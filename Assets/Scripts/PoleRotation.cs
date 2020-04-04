@@ -1,12 +1,13 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoleRotation : MonoBehaviour
+public class PoleRotation : NetworkBehaviour
 {
 
-    [SerializeField]
-    private bool started;
+    [SyncVar]
+    public bool started;
 
     [SerializeField]
     private float speed;
@@ -26,10 +27,12 @@ public class PoleRotation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player.Pr = this;
+        //player.Pr = this;
+        GameManager.GMInstance.Pr = this;
     }
 
     // Update is called once per frame
+    [Server]
     void Update()
     {
         if (started)
@@ -38,35 +41,14 @@ public class PoleRotation : MonoBehaviour
         }
     }
 
+    [Server]
     public void StartGame()
     {
+        Debug.Log("I start the game...");
         started = true;
         plane.engenOn = true;
         float angleRandom = Random.Range(0, 359);
         transform.Rotate(0, angleRandom, 0, Space.World);
         pr.StartGame();
-        ps.ShowStop();
-    }
-
-    public void StartAgain()
-    {
-        player.Restart();
-        ps.hideEverything();
-        //ps.gameObject.SetActive(false);
-        StartGame();
-    }
-
-    public void StopGame()
-    {
-        started = false;
-        plane.engenOn = false;
-        ps.ShowStart();
-    }
-
-    public void LooseGame()
-    {
-        ps.displayLooserText();
-        ps.gameObject.SetActive(true);
-        StopGame();
     }
 }
