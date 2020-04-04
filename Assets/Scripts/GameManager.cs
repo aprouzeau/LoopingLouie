@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : NetworkBehaviour
+public class GameManager : MonoBehaviour
 {
 
 
@@ -52,7 +52,9 @@ public class GameManager : NetworkBehaviour
 
     public void ClickOnStart()
     {
+        Debug.Log("ClickOnStart");
         player.StartGame();
+        
     }
 
     /*public void StartGame()
@@ -77,7 +79,7 @@ public class GameManager : NetworkBehaviour
         player.Restart();
         ps.hideEverything();
         //ps.gameObject.SetActive(false);
-        StartGame();
+        //StartGame();
     }
 
     public void StopGame()
@@ -94,10 +96,16 @@ public class GameManager : NetworkBehaviour
         StopGame();
     }
 
-    [Server]
+    /*[Server]
     public void StartGame()
     {
         Debug.Log("Start Game");
         pr.StartGame();
     }
+
+    [Server]
+    public void PlaneJump()
+    {
+        pr.Jump();
+    }*/
 }

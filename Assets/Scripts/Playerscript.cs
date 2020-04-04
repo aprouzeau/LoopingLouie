@@ -15,7 +15,7 @@ public class Playerscript : NetworkBehaviour
     [SerializeField]
     private Transform center;
 
-
+    [SerializeField]
     private PoleRotation _pr;
     public PoleRotation Pr { set { _pr = value; } }
 
@@ -63,13 +63,51 @@ public class Playerscript : NetworkBehaviour
 
     public void StartGame()
     {
-        CmdStart();
+        if (isLocalPlayer)
+        {
+            Debug.Log("StartGame on Player");
+            CmdStart();
+        }
+        else
+        {
+            Debug.Log("Not local Player...");
+        }
     }
 
     [Command]
     private void CmdStart()
     {
-        GM.StartGame();
+        Debug.Log("PlayerScript sent a command to click on start...");
+        startGameOnServer();
+    }
+
+
+    [Server]
+    private void startGameOnServer()
+    {
+        //GM.StartGame();
+        _pr.StartGame();
+    }
+
+    public void Hit()
+    {
+        if (isLocalPlayer)
+        {
+            CmdJump();
+        }
+    }
+
+    [Command]
+    private void CmdJump()
+    {
+        //GM.PlaneJump();
+        PlaneJump();
+    }
+
+    [Server]
+    private void PlaneJump()
+    {
+        _pr.Jump();
     }
 
 

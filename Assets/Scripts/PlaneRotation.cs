@@ -28,12 +28,13 @@ public class PlaneRotation : MonoBehaviour
     [SerializeField]
     private GameObject pivot;
 
-
+    PoleRotation pr;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        pr = this.transform.parent.GetComponent<PoleRotation>();
     }
 
     public void StartGame()
@@ -79,5 +80,9 @@ public class PlaneRotation : MonoBehaviour
         jump = true;
     }
 
+    /*public void Hit()
+    {
+
+    }*/
 
 }

@@ -32,6 +32,8 @@ public class NetworkManagerLL : NetworkManager
             NetworkServer.Spawn(rotatingPole);
         }
 
+        player.GetComponent<Playerscript>().Pr = rotatingPole.GetComponent<PoleRotation>();
+
     }
 
     // Start is called before the first frame update

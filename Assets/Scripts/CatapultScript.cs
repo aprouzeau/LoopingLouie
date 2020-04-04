@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CatapultScript : NetworkBehaviour
+public class CatapultScript : MonoBehaviour
 {
 
     [SerializeField]
@@ -35,7 +35,6 @@ public class CatapultScript : NetworkBehaviour
     }
 
     // Update is called once per frame
-    [Client]
     void Update()
     {
 
@@ -77,8 +76,9 @@ public class CatapultScript : NetworkBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Plane Hit...");
-        PlaneRotation pr = other.GetComponent<WheelScript>().Pr;
-        pr.Jump();
+        //PlaneRotation pr = other.GetComponent<WheelScript>().Pr;
+        //pr.Jump();
+        _player.Hit();
     }
 
 }

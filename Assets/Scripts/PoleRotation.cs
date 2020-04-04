@@ -6,7 +6,7 @@ using UnityEngine;
 public class PoleRotation : NetworkBehaviour
 {
 
-    [SyncVar]
+    //[SyncVar]
     public bool started;
 
     [SerializeField]
@@ -32,7 +32,7 @@ public class PoleRotation : NetworkBehaviour
     }
 
     // Update is called once per frame
-    [Server]
+    //[Server]
     void Update()
     {
         if (started)
@@ -50,5 +50,11 @@ public class PoleRotation : NetworkBehaviour
         float angleRandom = Random.Range(0, 359);
         transform.Rotate(0, angleRandom, 0, Space.World);
         pr.StartGame();
+    }
+
+    [Server]
+    public void Jump()
+    {
+        pr.Jump();
     }
 }
