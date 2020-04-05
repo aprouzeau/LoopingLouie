@@ -44,6 +44,14 @@ public class SetDePouleScript : MonoBehaviour
         
     }
 
+    public void pouleHitCollider()
+    {
+        if (!pouleJustHit)
+        {
+            _player.pouleHit();
+        }
+    }
+
     public void pouleHit()
     {
         if (!pouleJustHit)

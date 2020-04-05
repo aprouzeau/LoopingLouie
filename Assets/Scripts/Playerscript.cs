@@ -9,6 +9,8 @@ public class Playerscript : NetworkBehaviour
     [SerializeField]
     private GameObject SetDePoules;
 
+    SetDePouleScript sdp;
+
     [SerializeField]
     private GameObject Catapult;
 
@@ -42,6 +44,8 @@ public class Playerscript : NetworkBehaviour
 
         SetDePoules.GetComponent<SetDePouleScript>().Player = this;
         Catapult.GetComponent<CatapultScript>().Player = this;
+
+        sdp = SetDePoules.GetComponent<SetDePouleScript>();
     }
 
     // Update is called once per frame
@@ -60,6 +64,31 @@ public class Playerscript : NetworkBehaviour
         SetDePoules.GetComponent<SetDePouleScript>().InitBack();
     }
 
+    public void pouleHit()
+    {
+        if (isLocalPlayer)
+        {
+            CmdPouleJustHit();
+        }
+    }
+
+    [Command]
+    private void CmdPouleJustHit()
+    {
+        sendHitMessage();
+    }
+
+    [Server]
+    private void sendHitMessage()
+    {
+        RpcPouleHit();
+    }
+
+    [ClientRpc]
+    private void RpcPouleHit()
+    {
+        sdp.pouleHit();
+    }
 
     public void StartGame()
     {

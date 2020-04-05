@@ -14,11 +14,13 @@ public class Poule : MonoBehaviour
 
     [SerializeField]
     private float speed;
+
+    bool hitAlready;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        hitAlready = false;
     }
 
     // Update is called once per frame
@@ -38,12 +40,17 @@ public class Poule : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Poule Hit!!!!");
-        _setDePoule.pouleHit();
+        if (!hitAlready)
+        {
+            Debug.Log(this.GetInstanceID() + "Poule Hit!!!!");
+            _setDePoule.pouleHitCollider();
+            hitAlready = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("Poule Hit Done!!!!");
         _setDePoule.planeGone();
     }
 
