@@ -87,7 +87,7 @@ public class Playerscript : NetworkBehaviour
 
     public void Restart()
     {
-        SetDePoules.GetComponent<SetDePouleScript>().InitBack();
+        //SetDePoules.GetComponent<SetDePouleScript>().InitBack();
     }
 
     public void pouleHit()
@@ -141,6 +141,8 @@ public class Playerscript : NetworkBehaviour
     private void startGameOnServer()
     {
         //GM.StartGame();
+        RpcInitPlayer();
+        RpcInitButton();
         _pr.StartGame();
     }
 
@@ -165,6 +167,40 @@ public class Playerscript : NetworkBehaviour
         _pr.Jump();
     }
 
+    [ClientRpc]
+    private void RpcInitPlayer()
+    {
+        GM.InitPlayer();
+    }
 
+    [ClientRpc]
+    private void RpcInitButton()
+    {
+        GM.InitStopButton();
+    }
+
+    public void InitPoule()
+    {
+        if (isLocalPlayer)
+        {
+            sdp.InitBack();
+            CmdInitOther();
+        }
+    }
+
+    [Command]
+    private void CmdInitOther()
+    {
+        RpcInitOther();
+    }
+
+    [ClientRpc]
+    private void RpcInitOther()
+    {
+        if (!isLocalPlayer)
+        {
+            sdp.InitBack();
+        }
+    }
 
 }

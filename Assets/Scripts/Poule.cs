@@ -15,7 +15,8 @@ public class Poule : MonoBehaviour
     [SerializeField]
     private float speed;
 
-    bool hitAlready;
+    private bool hitAlready;
+    public bool HitAlready { set { hitAlready = value; } }
     
     // Start is called before the first frame update
     void Start()

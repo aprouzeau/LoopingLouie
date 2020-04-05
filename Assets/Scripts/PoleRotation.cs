@@ -45,6 +45,7 @@ public class PoleRotation : NetworkBehaviour
     public void StartGame()
     {
         Debug.Log("I start the game...");
+        
         started = true;
         plane.engenOn = true;
         RpcEngineOn();

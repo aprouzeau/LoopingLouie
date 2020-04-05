@@ -54,7 +54,13 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("ClickOnStart");
         player.StartGame();
-        
+        ps.hideEverything();
+
+    }
+
+    public void InitStopButton()
+    {
+        ps.ShowStop();
     }
 
     /*public void StartGame()
@@ -76,8 +82,8 @@ public class GameManager : MonoBehaviour
 
     public void StartAgain()
     {
-        player.Restart();
-        ps.hideEverything();
+        //player.Restart();
+        //ps.hideEverything();
         //ps.gameObject.SetActive(false);
         //StartGame();
     }
@@ -101,6 +107,11 @@ public class GameManager : MonoBehaviour
         ps.displayWinnerText();
         ps.gameObject.SetActive(true);
         StopGame();
+    }
+
+    public void InitPlayer()
+    {
+        player.InitPoule();
     }
 
     /*[Server]

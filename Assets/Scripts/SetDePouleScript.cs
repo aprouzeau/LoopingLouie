@@ -86,6 +86,7 @@ public class SetDePouleScript : MonoBehaviour
         {
             poulesTab[i].SetActive(true);
             poulesTab[i].transform.position = InitPos[i];
+            poulesTab[i].GetComponent<Poule>().HitAlready = false;
         }
 
         firstPouleAlive = 0;
