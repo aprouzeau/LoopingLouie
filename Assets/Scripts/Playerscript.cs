@@ -27,10 +27,14 @@ public class Playerscript : NetworkBehaviour
 
     GameManager GM;
 
+    bool lost;
+
 
     // Start is called before the first frame update
     void Start()
     {
+
+        lost = false;
         if (isLocalPlayer)
         {
             Vector3 unit = center.position - new Vector3(0, 0, 0);
@@ -39,9 +43,9 @@ public class Playerscript : NetworkBehaviour
             Camera.main.transform.LookAt((center.position - new Vector3(0, 0, 0)) / 2);
             GameManager.GMInstance.Player = this;
 
-            GM = GameManager.GMInstance;
+            
         }
-
+        GM = GameManager.GMInstance;
         SetDePoules.GetComponent<SetDePouleScript>().Player = this;
         Catapult.GetComponent<CatapultScript>().Player = this;
 
@@ -57,6 +61,28 @@ public class Playerscript : NetworkBehaviour
     public void Lost()
     {
         //_pr.LooseGame();
+        lost = true;
+        CmdEndGame();
+    }
+
+    [Command]
+    private void CmdEndGame()
+    {
+        _pr.EndGame();
+        RpcEndGame();
+    }
+
+    [ClientRpc]
+    private void RpcEndGame()
+    {
+        if (!isLocalPlayer)
+        {
+            GM.WinGame();
+        }
+        else
+        {
+            GM.LooseGame();
+        }
     }
 
     public void Restart()

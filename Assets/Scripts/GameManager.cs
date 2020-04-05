@@ -96,6 +96,13 @@ public class GameManager : MonoBehaviour
         StopGame();
     }
 
+    public void WinGame()
+    {
+        ps.displayWinnerText();
+        ps.gameObject.SetActive(true);
+        StopGame();
+    }
+
     /*[Server]
     public void StartGame()
     {

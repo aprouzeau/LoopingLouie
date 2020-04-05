@@ -47,14 +47,36 @@ public class PoleRotation : NetworkBehaviour
         Debug.Log("I start the game...");
         started = true;
         plane.engenOn = true;
+        RpcEngineOn();
         float angleRandom = Random.Range(0, 359);
         transform.Rotate(0, angleRandom, 0, Space.World);
         pr.StartGame();
+    }
+
+
+    [ClientRpc]
+    private void RpcEngineOn()
+    {
+        plane.engenOn = true;
+    }
+
+    [ClientRpc]
+    private void RpcEngineOff()
+    {
+        plane.engenOn = false;
     }
 
     [Server]
     public void Jump()
     {
         pr.Jump();
+    }
+
+    [Server]
+    public void EndGame()
+    {
+        started = false;
+        plane.engenOn = false;
+        RpcEngineOff();
     }
 }
