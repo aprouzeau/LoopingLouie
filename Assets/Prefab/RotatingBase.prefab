@@ -230,6 +230,7 @@ MonoBehaviour:
   syncInterval: 0.1
   started: 0
   speed: 100
+  MaxSpeed: 400
   plane: {fileID: 2372735188668421172}
   pr: {fileID: 2372735188035458825}
   ps: {fileID: 0}

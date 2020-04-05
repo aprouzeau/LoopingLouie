@@ -13,6 +13,9 @@ public class PoleRotation : NetworkBehaviour
     private float speed;
 
     [SerializeField]
+    private float MaxSpeed;
+
+    [SerializeField]
     private Plane plane;
 
     [SerializeField]
@@ -37,6 +40,8 @@ public class PoleRotation : NetworkBehaviour
     {
         if (started)
         {
+
+            speed = MaxSpeed * Mathf.PerlinNoise(Time.time * 1, 0.0f);
             transform.Rotate(0, -speed * Time.deltaTime, 0, Space.World);
         }
     }
