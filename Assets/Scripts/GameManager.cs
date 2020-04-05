@@ -58,6 +58,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void ClickOnStop()
+    {
+        player.StopGame();
+    }
+
     public void InitStopButton()
     {
         ps.ShowStop();

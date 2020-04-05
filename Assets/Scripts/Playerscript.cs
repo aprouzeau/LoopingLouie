@@ -65,6 +65,25 @@ public class Playerscript : NetworkBehaviour
         CmdEndGame();
     }
 
+    public void StopGame()
+    {
+        CmdStopGame();
+    }
+
+    [Command]
+    private void CmdStopGame()
+    {
+        _pr.EndGame();
+        RpcStopGame();
+    }
+
+    [ClientRpc]
+    private void RpcStopGame()
+    {
+        GM.StopGame();
+    }
+
+
     [Command]
     private void CmdEndGame()
     {
